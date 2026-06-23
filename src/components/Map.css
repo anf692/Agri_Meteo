@@ -14,5 +14,15 @@
 }
 
 .region.selected {
-  fill: #2c7a4b;
+  fill: #4A90D9;
+  
+}
+
+.region-label {
+  font-size: 10px;
+  fill: #1F2A24;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 500;
 }

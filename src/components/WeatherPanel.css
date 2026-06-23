@@ -1,0 +1,71 @@
+.weather-panel {
+  border-radius: 24px;
+  padding: 28px;
+  color: white;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.3s ease;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.weather-panel.risk-normal {
+  background: linear-gradient(160deg, #6BB6E8 0%, #4A90D9 100%);
+}
+
+.weather-panel.risk-high {
+  background: linear-gradient(160deg, #2A2D35 0%, #1C1F26 100%);
+}
+
+.weather-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.weather-panel-icon {
+  width: 64px;
+  height: 64px;
+  margin: 12px 0;
+}
+
+.weather-panel-temp {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.weather-panel-region {
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.weather-panel-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.weather-panel-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.weather-panel-stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.weather-panel .error {
+  color: #FFB4B4;
+}
+
+

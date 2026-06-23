@@ -1,6 +1,7 @@
 import { senegalPaths } from "../data/senegalPaths";
 import { calculateRisk } from "../utils/riskCalculator";
 import RiskBadge from "./RiskBadge";
+import "./WeatherPanel.css";
 
 function WeatherPanel({ selectedRegion, weather, loading, error }) {
   if (!selectedRegion) {
@@ -8,29 +9,45 @@ function WeatherPanel({ selectedRegion, weather, loading, error }) {
   }
 
   const region = senegalPaths.find((r) => r.id === selectedRegion);
+  const risk = weather ? calculateRisk(weather.temp, weather.humidity) : null;
+  const panelClass = risk && risk.score >= 35 ? "risk-high" : "risk-normal";
 
   return (
-    <div className="weather-panel">
-      <h2>{region.name}</h2>
+    <div className={`weather-panel ${panelClass}`}>
+      <div className="weather-panel-header">
+        <span>Aujourd'hui</span>
+      </div>
 
       {loading && <p>Chargement des données météo...</p>}
-
       {error && <p className="error">{error}</p>}
 
       {weather && !loading && !error && (
-        <div>
-          <p>Température : {weather.temp}°C</p>
-          <p>Humidité : {weather.humidity }%</p>
-          <img src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} alt={weather.description} />
+        <>
+          <img
+            className="weather-panel-icon"
+            src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+            alt={weather.description}
+          />
+          <div className="weather-panel-temp">{weather.temp}°</div>
+          <div className="weather-panel-region">{region.name}</div>
 
-          <RiskBadge risk={calculateRisk(weather.temp, weather.humidity)} />
+          <div className="weather-panel-stats">
+            <div>
+              <div className="weather-panel-stat-label">Humidité</div>
+              <div className="weather-panel-stat-value">{weather.humidity}%</div>
+            </div>
+            <div>
+              <div className="weather-panel-stat-label">Condition</div>
+              <div className="weather-panel-stat-value">{weather.description}</div>
+            </div>
+          </div>
 
-        </div>
+          <RiskBadge risk={risk} />
+        </>
       )}
     </div>
   );
 }
 
 export default WeatherPanel;
-
 
