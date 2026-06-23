@@ -1,0 +1,28 @@
+.senegal-map {
+  width: 100%;
+  height: auto;
+}
+
+.region {
+  fill: #6f9c76;
+  cursor: pointer;
+  transition: fill 0.2s ease, opacity 0.2s ease;
+}
+
+.region:hover {
+  opacity: 0.7;
+}
+
+.region.selected {
+  fill: #4A90D9;
+  
+}
+
+.region-label {
+  font-size: 10px;
+  fill: #1F2A24;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 500;
+}
