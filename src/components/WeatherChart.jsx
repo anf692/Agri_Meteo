@@ -1,35 +1,34 @@
+import { Line } from "react-chartjs-2";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
   Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-} from "recharts";
+} from "chart.js";
+import { generateHistory } from "../utils/generateHistory";
 
-export default function WeatherChart({ data }) {
-  return (
-    <div style={{ width: "100%", height: 300 }}>
-      <ResponsiveContainer>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          
-          <XAxis dataKey="day" />
-          <YAxis />
-          
-          <Tooltip />
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
-          <Line 
-            type="monotone" 
-            dataKey="temp" 
-            stroke="#22c55e" 
-            strokeWidth={3}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
+function WeatherChart({ currentTemp }) {
+  if (!currentTemp) return null;
+
+  const history = generateHistory(currentTemp);
+
+  const data = {
+    labels: history.map(h => h.day),
+    datasets: [
+      {
+        label: "Température (°C)",
+        data: history.map(t => t.temp),
+        borderColor: "#2c7a4b",
+      },
+    ],
+  };
+
+  return <Line data={data} />;
 }
 
+export default WeatherChart;
 
