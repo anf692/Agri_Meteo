@@ -3,6 +3,8 @@ import "./Map.css";
 
 function Map({ selectedRegion, onSelectRegion }) {
   return (
+    <>
+    <h1>Carte du Senegal</h1>
     <svg viewBox="0 0 1000 736" className="senegal-map">
       {senegalPaths.map((region) => (
         <path
@@ -18,6 +20,7 @@ function Map({ selectedRegion, onSelectRegion }) {
         />
       ))}
     </svg>
+    </>
   );
 }
 
